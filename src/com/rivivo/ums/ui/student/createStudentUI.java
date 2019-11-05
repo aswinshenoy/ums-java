@@ -1,15 +1,17 @@
 package com.rivivo.ums.ui.student;
 
+import com.rivivo.ums.models.campus;
+import com.rivivo.ums.models.program.program;
+import com.rivivo.ums.models.student;
 import com.rivivo.ums.ui.commons.ClickEventHandler;
+import com.rivivo.ums.ui.commons.FileHandler;
 import com.rivivo.ums.ui.commons.createForm;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 
 public class createStudentUI extends createForm {
@@ -18,63 +20,59 @@ public class createStudentUI extends createForm {
     JTextField lastNameField;
     JTextField batchYear;
     JComboBox campusSelector;
-
-    public JPanel getTextField(String text, JTextField j)
-    {
-        JPanel p = new JPanel();
-        p.setLayout(new GridLayout(1,2));
-        p.add(new JLabel(text));
-        j = new JTextField();
-        p.add(j);
-
-        return p;
-    }
-
-    public JPanel getComboboxField(String text, JComboBox j, String[] options)
-    {
-        JPanel p = new JPanel();
-        p.setLayout(new GridLayout(1,2));
-
-        p.add(new JLabel(text));
-        j = new JComboBox(options);
-        p.add(j);
-        return p;
-    }
+    JComboBox programSelector;
+    ArrayList campuses;
+    ArrayList programs;
 
     public createStudentUI(ClickEventHandler ch) {
         super(ch);
-    }
-
-    public static List readFileByLine(String fileName) {
-        List lines = new List();
-        try {
-            File file = new File(fileName);
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNext()) {
-                lines.add(scanner.next());
-            }
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return lines;
     }
 
     @Override
     public JPanel getFormFields()
     {
         JPanel p = new JPanel();
-        p.setLayout(new GridLayout(2,2,10,10));
+        p.setLayout(new GridLayout(5, 2, 10, 10));
 
-        p.add(getTextField("First Name", firstNameField));
-        p.add(getTextField("Last Name", lastNameField));
-        p.add(getTextField("Batch Year", batchYear));
+        p.add(new JLabel("First Name: "));
+        firstNameField = new JTextField();
+        p.add(firstNameField);
 
-        List lines = readFileByLine("./data/campus_data.txt");
+        p.add(new JLabel("Last Name: "));
+        lastNameField = new JTextField();
+        p.add(lastNameField);
+
+        p.add(new JLabel("Admission Year: "));
+        batchYear = new JTextField();
+        p.add(batchYear);
+
+        p.add(new JLabel("Campus: "));
+        List lines = FileHandler.readFileByLine(campus.getFilePath());
         List names = new List();
-        for (String x : lines.getItems())
+        campuses = new ArrayList();
+        for (String x : lines.getItems()) {
             names.add(x.split(",")[0]);
-        p.add(getComboboxField("Campus",campusSelector,names.getItems()));
+            campuses.add(new campus(x.split(",")[0], x.split(",")[1]));
+        }
+        campusSelector = new JComboBox(names.getItems());
+        p.add(campusSelector);
+
+        p.add(new JLabel("Program: "));
+        List pclines = FileHandler.readFileByLine(program.getFilePath());
+        List cats = new List();
+        programs = new ArrayList();
+        for (String x : pclines.getItems()) {
+            cats.add(x.split(",")[0]);
+            programs.add(new program(
+                    x.split(",")[0],
+                    x.split(",")[1],
+                    x.split(",")[2],
+                    x.split(",")[3],
+                    Integer.parseInt(x.split(",")[4])
+            ));
+        }
+        programSelector = new JComboBox(cats.getItems());
+        p.add(programSelector);
 
         return p;
     }
@@ -98,13 +96,18 @@ public class createStudentUI extends createForm {
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                String abbr = abbrField.getText();
-//                String name = nameField.getText();
-//                if(!name.isEmpty() && !abbr.isEmpty())
-//                {
-//                    campus c = new campus(name,abbr);
+                String firstName = firstNameField.getText();
+                String lastName = lastNameField.getText();
+                int batchyear = Integer.parseInt(batchYear.getText());
+                int pi = programSelector.getSelectedIndex();
+                int ci = campusSelector.getSelectedIndex();
+                if (!firstName.isEmpty() && !lastName.isEmpty() && !batchYear.getText().isEmpty() && pi != -1 && ci != -1) {
+                    program program = (program) programs.get(pi);
+                    campus campus = (campus) campuses.get(ci);
+                    student s = new student(firstName, lastName, batchyear, campus, program);
+                    s.writeToFile();
                     onClick();
-//                }
+                }
             }
         } );
         p.add(b2);

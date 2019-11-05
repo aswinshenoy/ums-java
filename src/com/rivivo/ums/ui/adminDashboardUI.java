@@ -23,6 +23,18 @@ class ClickHandler implements ClickEventHandler {
 	}
 }
 
+class LoginHandler implements ClickEventHandler {
+    adminDashboardUI dispatcher;
+
+    public LoginHandler(adminDashboardUI i) {
+        dispatcher = i;
+    }
+
+    public void handleClick() {
+        dispatcher.reset();
+    }
+}
+
 public class adminDashboardUI {
 
 	JPanel dashboard;
@@ -90,8 +102,14 @@ public class adminDashboardUI {
         
         menuItem b5 = new menuItem("Faculty");
 		menuGrid.add(b5);
-        
-        menuItem b6 = new menuItem("Settings");
+
+        menuItem b6 = new menuItem("Logout");
+        b6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                logout();
+            }
+        });
 		menuGrid.add(b6);
 	}
 
@@ -111,15 +129,21 @@ public class adminDashboardUI {
 		dashboard.revalidate();
 		dashboard.repaint();
 	}
+
+    public void logout() {
+        dashboard.removeAll();
+        adminDashboardUI curr = this;
+        LoginHandler ch = new LoginHandler(curr);
+        Login l = new Login(ch);
+        dashboard.add(l.getLoginForm(), BorderLayout.CENTER);
+        dashboard.revalidate();
+        dashboard.repaint();
+    }
 	
 	public JPanel getDashboard()
 	{
     	dashboard.setLayout(new BorderLayout(3,3));
-    	
-        titleBar t = new titleBar("Admin Dashboard");
-		dashboard.add(t.getTitleBar(), BorderLayout.NORTH);
-		dashboard.add(menu, BorderLayout.CENTER);
-    	
+        logout();
     	return dashboard;
 	}
 }

@@ -24,7 +24,16 @@ public class student {
 
     public void generateRollNumber()
     {
+        studentIndex = FileHandler.readFileByLine(getFilePath()).getItemCount() + 1;
         rollNumber = campus.abbr + '.' + program.programCode + batchYear%100 + String.format("%03d", studentIndex);
         studentIndex++;
+    }
+
+    public static String getFilePath() {
+        return "./data/student_data.txt";
+    }
+
+    public void writeToFile() {
+        FileHandler.AppendLine(getFilePath(), firstName + ',' + lastName + ',' + rollNumber);
     }
 }

@@ -1,16 +1,16 @@
 package com.rivivo.ums;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
 
-import javax.swing.JFrame;
-
-import com.rivivo.ums.ui.*;
+import com.rivivo.ums.ui.adminDashboardUI;
 import com.rivivo.ums.ui.header.titleBar;
 
+import javax.swing.*;
+import java.awt.*;
+
+
 public class Main {
+
     public static void main(String[] args) {
-    	JFrame f = new JFrame();
+        JFrame f = new JFrame();
         f.setLayout(new BorderLayout(3,3));
         titleBar t = new titleBar(
         				"University Management Suite (UMS)",
@@ -26,32 +26,8 @@ public class Main {
         f.add(bottomBar.getTitleBar(), BorderLayout.SOUTH);
         adminDashboardUI d = new adminDashboardUI();
         f.add(d.getDashboard());
-        
-        f.setSize(800,600);
+
+        f.setSize(1200, 800);
         f.setVisible(true);
-
-//        campus amritapuri = new campus("Amritapuri","AM");
-//
-//        courseCategory eng = new courseCategory("Engineering", "EN");
-//        courseType undergrad = new courseType("Undergraduate", "U");
-//        courseSpecialization cse = new courseSpecialization("Computer Science & Engineering", "CSE");
-//
-//        course bcse = new course(
-//                    "Bachelor of Technology",
-//                    eng,
-//                    undergrad,
-//                    cse,
-//                    4
-//                );
-//
-//        student ashwin = new student(
-//                    "Ashwin",
-//                    "Shenoy",
-//                    2018,
-//                    amritapuri,
-//                    bcse
-//                );
-//        System.out.println(ashwin.rollNumber);
-
     }
 }

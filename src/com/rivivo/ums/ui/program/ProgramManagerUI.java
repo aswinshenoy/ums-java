@@ -34,12 +34,12 @@ public class ProgramManagerUI extends managerMenu {
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                com.rivivo.ums.ui.student.ClickHandler ch = new com.rivivo.ums.ui.student.ClickHandler(curr);
-//                createStudentUI campus = new createStudentUI(ch);
-//                menu.setVisible(false);
-//                panel.removeAll();
-//                panel.add(campus.getUI("Add Campus"));
-//                panel.revalidate();
+                ClickHandler ch = new ClickHandler(curr);
+                programManUI Types = new programManUI(ch);
+                menu.setVisible(false);
+                panel.removeAll();
+                panel.add(Types.getUI("Add Program"));
+                panel.revalidate();
                 panel.repaint();
             }
         });
@@ -49,9 +49,33 @@ public class ProgramManagerUI extends managerMenu {
         menuGrid.add(b2);
 
         menuItem b3 = new menuItem("Specializations");
+        b3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ClickHandler ch = new ClickHandler(curr);
+                SpecializationManagerUI Types = new SpecializationManagerUI(ch);
+                menu.setVisible(false);
+                panel.removeAll();
+                panel.add(Types.getUI("Add Specializations"));
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
         menuGrid.add(b3);
 
         menuItem b4 = new menuItem("Categories");
+        b4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ClickHandler ch = new ClickHandler(curr);
+                CategoryManagerUI Types = new CategoryManagerUI(ch);
+                menu.setVisible(false);
+                panel.removeAll();
+                panel.add(Types.getUI("Add Categories"));
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
         menuGrid.add(b4);
 
         menuItem b5 = new menuItem("Go Back");

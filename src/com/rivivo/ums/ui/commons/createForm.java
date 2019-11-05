@@ -21,7 +21,9 @@ public abstract class createForm {
 
     JPanel entryForm(){
         JPanel p =new JPanel();
-        p.setLayout(new BorderLayout());
+        BorderLayout b = new BorderLayout();
+        b.setVgap(50);
+        p.setLayout(b);
         p.add(getFormFields(), BorderLayout.CENTER);
         p.add(getButtons(), BorderLayout.SOUTH);
         return p;
@@ -30,8 +32,8 @@ public abstract class createForm {
     JPanel main(){
         JPanel p = new JPanel();
         p.setSize(new Dimension(500, 300));
-        p.setFont(new Font("Verdana",Font.PLAIN,28));
-        p.setLayout(new FlowLayout(FlowLayout.LEFT));
+        p.setFont(new Font("Verdana", Font.PLAIN, 40));
+        p.setLayout(new FlowLayout(FlowLayout.CENTER));
         p.add(entryForm());
 
         return p;
