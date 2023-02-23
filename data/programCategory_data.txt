@@ -1,0 +1,4 @@
+Engineering,EN
+Biotech,BT
+Arts,AR
+Medicine,MD

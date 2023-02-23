@@ -9,6 +9,7 @@ public abstract class managerMenu {
     public JPanel panel;
     public JPanel menuGrid;
     public JPanel menu;
+    public String label;
     ClickEventHandler clickHandler;
 
     public managerMenu(ClickEventHandler ch)
@@ -17,6 +18,15 @@ public abstract class managerMenu {
         menu = new JPanel();
         menuGrid = new JPanel();
         clickHandler = ch;
+        generateMenu();
+    }
+
+    public managerMenu(ClickEventHandler ch, String l) {
+        panel = new JPanel();
+        menu = new JPanel();
+        menuGrid = new JPanel();
+        clickHandler = ch;
+        label = l;
         generateMenu();
     }
 

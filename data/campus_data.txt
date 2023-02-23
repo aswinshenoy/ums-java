@@ -1,0 +1,6 @@
+Amritapuri,AM
+Bengaluru,BG
+coimbatore,cb
+Delhi,DL
+Trivandrum,TVR
+coimbatore,cbm

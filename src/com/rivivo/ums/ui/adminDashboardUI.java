@@ -1,14 +1,17 @@
 package com.rivivo.ums.ui;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-
-import com.rivivo.ums.ui.commons.*;
-import com.rivivo.ums.ui.program.ProgramManagerUI;
-import com.rivivo.ums.ui.header.titleBar;
 import com.rivivo.ums.ui.campus.CampusManagerUI;
+import com.rivivo.ums.ui.commons.ClickEventHandler;
+import com.rivivo.ums.ui.commons.menuItem;
+import com.rivivo.ums.ui.header.titleBar;
+import com.rivivo.ums.ui.login.Login;
+import com.rivivo.ums.ui.program.ProgramManagerUI;
 import com.rivivo.ums.ui.student.StudentManagerUI;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 class ClickHandler implements ClickEventHandler {
 	adminDashboardUI dispatcher;
@@ -96,11 +99,11 @@ public class adminDashboardUI {
 			}
 		} );
 		menuGrid.add(b3);
-    
-        menuItem b4 = new menuItem("Grading");
+
+        menuItem b4 = new menuItem("Courses");
 		menuGrid.add(b4);
-        
-        menuItem b5 = new menuItem("Faculty");
+
+        menuItem b5 = new menuItem("Grades");
 		menuGrid.add(b5);
 
         menuItem b6 = new menuItem("Logout");

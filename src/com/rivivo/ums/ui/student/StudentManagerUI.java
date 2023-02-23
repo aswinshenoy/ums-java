@@ -1,13 +1,7 @@
 package com.rivivo.ums.ui.student;
 
-import com.rivivo.ums.ui.student.createStudentUI;
 import com.rivivo.ums.ui.commons.ClickEventHandler;
-import com.rivivo.ums.ui.commons.managerMenu;
-import com.rivivo.ums.ui.commons.menuItem;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import com.rivivo.ums.ui.commons.modelManagerMenu;
 
 class ClickHandler implements ClickEventHandler {
     StudentManagerUI dispatcher;
@@ -22,47 +16,30 @@ class ClickHandler implements ClickEventHandler {
     }
 }
 
-public class StudentManagerUI extends managerMenu {
+public class StudentManagerUI extends modelManagerMenu {
 
     public StudentManagerUI(ClickEventHandler ch) {
-        super(ch);
+        super(ch, "Student");
     }
 
-    public void generateMenuGrid() {
-        menuGrid.setLayout(new GridLayout(2, 3, 10, 10));
-        menuGrid.setBackground(null);
-        StudentManagerUI curr = this;
-        menuItem b1 = new menuItem("Add Student");
-        b1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ClickHandler ch = new ClickHandler(curr);
-                createStudentUI campus = new createStudentUI(ch);
-                menu.setVisible(false);
-                panel.removeAll();
-                panel.add(campus.getUI("Add Campus"));
-                panel.revalidate();
-                panel.repaint();
-            }
-        });
-        menuGrid.add(b1);
-
-        menuItem b2 = new menuItem("View Students");
-        menuGrid.add(b2);
-
-        menuItem b3 = new menuItem("Edit/Remove Students");
-        menuGrid.add(b3);
-
-        menuItem b4 = new menuItem("Student Stats");
-        menuGrid.add(b4);
-
-        menuItem b5 = new menuItem("Go Back");
-        b5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onClick();
-            }
-        });
-        menuGrid.add(b5);
+    public void onClickAddNew(modelManagerMenu curr) {
+        ClickHandler ch = new ClickHandler((StudentManagerUI) curr);
+        createStudentUI type = new createStudentUI(ch);
+        menu.setVisible(false);
+        panel.removeAll();
+        panel.add(type.getUI("Add Student"));
+        panel.revalidate();
+        panel.repaint();
     }
+
+    public void onClickShow(modelManagerMenu curr) {
+        ClickHandler ch = new ClickHandler((StudentManagerUI) curr);
+        listStudentUI type = new listStudentUI(ch);
+        menu.setVisible(false);
+        panel.removeAll();
+        panel.add(type.getUI("View Students"));
+        panel.revalidate();
+        panel.repaint();
+    }
+
 }

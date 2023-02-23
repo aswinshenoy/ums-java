@@ -106,7 +106,7 @@ public class Login {
                         }
                     else {
                         System.err.println("Please complete the form.");
-                        errorText.setText("Invalid Username or Password");
+                        errorText.setText("Please complete the form.");
                         errorText.setVisible(true);
                     }
                 }

@@ -3,6 +3,10 @@ package com.rivivo.ums.ui.program;
 import com.rivivo.ums.ui.commons.ClickEventHandler;
 import com.rivivo.ums.ui.commons.managerMenu;
 import com.rivivo.ums.ui.commons.menuItem;
+import com.rivivo.ums.ui.program.category.CategoryManagerUI;
+import com.rivivo.ums.ui.program.program.programManUI;
+import com.rivivo.ums.ui.program.specialization.SpecializationManagerUI;
+import com.rivivo.ums.ui.program.type.TypeManagerUI;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -46,6 +50,18 @@ public class ProgramManagerUI extends managerMenu {
         menuGrid.add(b1);
 
         menuItem b2 = new menuItem("Types");
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ClickHandler ch = new ClickHandler(curr);
+                TypeManagerUI Types = new TypeManagerUI(ch);
+                menu.setVisible(false);
+                panel.removeAll();
+                panel.add(Types.getUI("Add Types"));
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
         menuGrid.add(b2);
 
         menuItem b3 = new menuItem("Specializations");

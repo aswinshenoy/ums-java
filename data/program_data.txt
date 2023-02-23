@@ -1,0 +1,2 @@
+Btech - CSE,EN,U,CSE,4
+Btech - ME,EN,U,ME,4

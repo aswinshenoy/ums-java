@@ -12,4 +12,12 @@ public class menuItem extends JButton {
         setFont(new Font("Serif", Font.BOLD,18));
         setPreferredSize(new Dimension(230,150));
     }
+
+    public menuItem(String text, Color bg) {
+        super(text);
+        setBorder(null);
+        setBackground(bg);
+        setFont(new Font("Serif", Font.BOLD, 18));
+        setPreferredSize(new Dimension(230, 150));
+    }
 }

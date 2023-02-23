@@ -1,6 +1,7 @@
 package com.rivivo.ums.models;
 
-import com.rivivo.ums.models.program.*;
+import com.rivivo.ums.models.program.program;
+import com.rivivo.ums.ui.commons.FileHandler;
 
 public class student {
     public static int studentIndex = 1;
@@ -12,13 +13,13 @@ public class student {
     private program program;
     private campus campus;
 
-    public student(String fn, String ln, int y, campus cp, program cr)
+    public student(String fn, String ln, int y, campus c, program p)
     {
         firstName = fn;
         lastName = ln;
         batchYear = y;
-        campus = cp;
-        program = cr;
+        campus = c;
+        program = p;
         generateRollNumber();
     }
 
