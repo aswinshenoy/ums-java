@@ -10,7 +10,6 @@ using Java based object oriented programing, and Java Swing UI library.
 
 ### Screenshots
 ![](https://raw.githubusercontent.com/aswinshenoy/ums-java/main/screenshots/1.png)
-![](https://raw.githubusercontent.com/aswinshenoy/ums-java/main/screenshots/2.png)
 ![](https://raw.githubusercontent.com/aswinshenoy/ums-java/main/screenshots/3.png)
 ![](https://raw.githubusercontent.com/aswinshenoy/ums-java/main/screenshots/4.png)
 ![](https://raw.githubusercontent.com/aswinshenoy/ums-java/main/screenshots/5.png)
